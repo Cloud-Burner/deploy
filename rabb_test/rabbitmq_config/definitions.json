@@ -1,0 +1,178 @@
+{
+  "rabbit_version": "4.0.7",
+  "rabbitmq_version": "4.0.7",
+  "product_name": "RabbitMQ",
+  "product_version": "4.0.7",
+  "rabbitmq_definition_format": "cluster",
+  "original_cluster_name": "rabbit@c10eb3a8ad29",
+  "explanation": "Definitions of cluster 'rabbit@c10eb3a8ad29'",
+  "users": [
+    {
+      "name": "user",
+      "password_hash": "Jn4XNQEAQYuNYRcshG1D1Pys6mggqPjZGPIBkv6bBATdAvLF",
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "tags": [
+        "administrator"
+      ],
+      "limits": {}
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "/",
+      "description": "Default virtual host",
+      "metadata": {
+        "description": "Default virtual host",
+        "tags": [],
+        "default_queue_type": "classic"
+      },
+      "tags": [],
+      "default_queue_type": "classic"
+    }
+  ],
+  "permissions": [
+    {
+      "user": "user",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+  "topic_permissions": [],
+  "parameters": [],
+  "global_parameters": [
+    {
+      "name": "cluster_tags",
+      "value": []
+    },
+    {
+      "name": "internal_cluster_id",
+      "value": "rabbitmq-cluster-id-M271u7MGN3Kwgm3nv7WzcQ"
+    }
+  ],
+  "policies": [],
+  "queues": [
+    {
+      "name": "green_1",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-queue-type": "classic"
+      }
+    },
+    {
+      "name": "DE10_lite_1",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-queue-type": "classic"
+      }
+    },
+    {
+      "name": "arduino_nano_1",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-queue-type": "classic"
+      }
+    }
+  ],
+  "exchanges": [
+    {
+      "name": "green_board",
+      "vhost": "/",
+      "type": "x-local-random",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    },
+    {
+      "name": "main",
+      "vhost": "/",
+      "type": "headers",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    },
+    {
+      "name": "arduino_nano",
+      "vhost": "/",
+      "type": "x-local-random",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    },
+    {
+      "name": "DE10_lite",
+      "vhost": "/",
+      "type": "x-local-random",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    }
+  ],
+  "bindings": [
+    {
+      "source": "DE10_lite",
+      "vhost": "/",
+      "destination": "DE10_lite_1",
+      "destination_type": "queue",
+      "routing_key": "",
+      "arguments": {}
+    },
+    {
+      "source": "arduino_nano",
+      "vhost": "/",
+      "destination": "arduino_nano_1",
+      "destination_type": "queue",
+      "routing_key": "",
+      "arguments": {}
+    },
+    {
+      "source": "green_board",
+      "vhost": "/",
+      "destination": "green_1",
+      "destination_type": "queue",
+      "routing_key": "",
+      "arguments": {}
+    },
+    {
+      "source": "main",
+      "vhost": "/",
+      "destination": "DE10_lite",
+      "destination_type": "exchange",
+      "routing_key": "",
+      "arguments": {
+        "board": "DE10_lite"
+      }
+    },
+    {
+      "source": "main",
+      "vhost": "/",
+      "destination": "arduino_nano",
+      "destination_type": "exchange",
+      "routing_key": "",
+      "arguments": {
+        "board": "arduino_nano"
+      }
+    },
+    {
+      "source": "main",
+      "vhost": "/",
+      "destination": "green_board",
+      "destination_type": "exchange",
+      "routing_key": "",
+      "arguments": {
+        "board": "green"
+      }
+    }
+  ]
+}
