@@ -1,0 +1,48 @@
+---
+- name: Deploy RabbitMQ using Docker
+  hosts: "{{ target_hosts | default('localhost') }}"
+  become: yes
+  tasks:
+    - name: Ensure Docker is installed
+      apt:
+        name: docker.io
+        state: present
+        update_cache: yes
+
+    - name: Ensure Docker service is running
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Pull the official RabbitMQ Docker image
+      docker_image:
+        name: rabbitmq
+        source: pull
+
+    - name: Run RabbitMQ container
+      docker_container:
+        name: rabbitmq
+        image: rabbitmq
+        state: started
+        restart_policy: unless-stopped
+        exposed_ports:
+          - "5672"
+          - "15672"
+        published_ports:
+          - "5672:5672"
+          - "15672:15672"
+        env:
+          RABBITMQ_DEFAULT_USER: "user"
+          RABBITMQ_DEFAULT_PASS: "password"
+        volumes:
+          - "rabbitmq_data:/var/lib/rabbitmq"
+
+    - name: Check RabbitMQ container status
+      docker_container_info:
+        name: rabbitmq
+      register: rabbitmq_info
+
+    - name: Show RabbitMQ container status
+      debug:
+        var: rabbitmq_info
