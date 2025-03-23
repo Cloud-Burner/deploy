@@ -4,8 +4,8 @@
   "product_name": "RabbitMQ",
   "product_version": "4.0.7",
   "rabbitmq_definition_format": "cluster",
-  "original_cluster_name": "rabbit@c10eb3a8ad29",
-  "explanation": "Definitions of cluster 'rabbit@c10eb3a8ad29'",
+  "original_cluster_name": "rabbit@26c27330eb18",
+  "explanation": "Definitions of cluster 'rabbit@26c27330eb18'",
   "users": [
     {
       "name": "user",
@@ -73,6 +73,15 @@
     },
     {
       "name": "arduino_nano_1",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-queue-type": "classic"
+      }
+    },
+    {
+      "name": "result",
       "vhost": "/",
       "durable": true,
       "auto_delete": false,
