@@ -81,6 +81,15 @@
       }
     },
     {
+      "name": "sync_de10_lite_1",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-queue-type": "classic"
+      }
+    },
+    {
       "name": "result",
       "vhost": "/",
       "durable": true,
