@@ -4,8 +4,8 @@
   "product_name": "RabbitMQ",
   "product_version": "4.0.7",
   "rabbitmq_definition_format": "cluster",
-  "original_cluster_name": "rabbit@c10eb3a8ad29",
-  "explanation": "Definitions of cluster 'rabbit@c10eb3a8ad29'",
+  "original_cluster_name": "rabbit@26c27330eb18",
+  "explanation": "Definitions of cluster 'rabbit@26c27330eb18'",
   "users": [
     {
       "name": "user",
@@ -72,7 +72,34 @@
       }
     },
     {
+      "name": "arduino_nano_2",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-queue-type": "classic"
+      }
+    },
+    {
       "name": "arduino_nano_1",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-queue-type": "classic"
+      }
+    },
+    {
+      "name": "sync_de10_lite_1",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-queue-type": "classic"
+      }
+    },
+    {
+      "name": "result",
       "vhost": "/",
       "durable": true,
       "auto_delete": false,
@@ -132,6 +159,14 @@
       "source": "arduino_nano",
       "vhost": "/",
       "destination": "arduino_nano_1",
+      "destination_type": "queue",
+      "routing_key": "",
+      "arguments": {}
+    },
+    {
+      "source": "arduino_nano",
+      "vhost": "/",
+      "destination": "arduino_nano_2",
       "destination_type": "queue",
       "routing_key": "",
       "arguments": {}

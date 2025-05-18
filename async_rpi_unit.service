@@ -1,0 +1,18 @@
+[Unit]
+Description=Raspberry Pi FPGA Node
+After=network.target
+
+[Service]
+User=adm
+WorkingDirectory=/home/adm/srv/Raspberry-pi-fpga-node
+ExecStart=/home/adm/.local/bin/poetry run python3 -m raspberry_pi_fpga_node
+Restart=always
+RestartSec=5
+
+# Необязательно, но полезно:
+StandardOutput=append:/var/log/raspberry_service.log
+StandardError=append:/var/log/raspberry_service.err.log
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
