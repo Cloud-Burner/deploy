@@ -72,6 +72,15 @@
       }
     },
     {
+      "name": "arduino_nano_2",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-queue-type": "classic"
+      }
+    },
+    {
       "name": "arduino_nano_1",
       "vhost": "/",
       "durable": true,
@@ -150,6 +159,14 @@
       "source": "arduino_nano",
       "vhost": "/",
       "destination": "arduino_nano_1",
+      "destination_type": "queue",
+      "routing_key": "",
+      "arguments": {}
+    },
+    {
+      "source": "arduino_nano",
+      "vhost": "/",
+      "destination": "arduino_nano_2",
       "destination_type": "queue",
       "routing_key": "",
       "arguments": {}
