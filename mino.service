@@ -1,0 +1,23 @@
+[Unit]
+Description=MinIO Docker Container
+After=docker.service
+Requires=docker.service
+
+[Service]
+User=adm
+Group=adm
+WorkingDirectory=/home/adm
+
+ExecStart=/usr/bin/docker run --rm \
+  -p 9000:9000 -p 9001:9001 \
+  -e MINIO_ROOT_USER=minioadmin \
+  -e MINIO_ROOT_PASSWORD=minioadmin \
+  -v /home/adm/data:/data \
+  -v /home/adm/config:/root/.minio \
+  quay.io/minio/minio server /data --console-address ":9001"
+
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

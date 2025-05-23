@@ -4,11 +4,12 @@ After=network.target
 
 [Service]
 User=adm
-WorkingDirectory=/home/adm/srv/Raspberry-pi-fpga-node
-ExecStart=/home/adm/.local/bin/poetry run python3 -m raspberry_pi_fpga_node
+WorkingDirectory=/home/adm/srv/Backend
+ExecStart=/home/adm/.local/bin/poetry run python3 -m backend
 Restart=always
 RestartSec=5
 
+# Необязательно, но полезно:
 StandardOutput=append:/var/log/raspberry_service.log
 StandardError=append:/var/log/raspberry_service.err.log
 Environment=PYTHONUNBUFFERED=1

@@ -1,0 +1,24 @@
+[Unit]
+Description=PostgreSQL Docker Container
+After=docker.service
+Requires=docker.service
+
+[Service]
+User=adm
+Group=adm
+WorkingDirectory=/home/adm
+
+ExecStart=/usr/bin/docker run --rm \
+  --name Burner_base \
+  -e POSTGRES_USER=admin \
+  -e POSTGRES_PASSWORD=admin \
+  -e POSTGRES_DB=burner \
+  -v /home/adm/pgdata:/var/lib/postgresql/data \
+  -p 5432:5432 \
+  postgres
+
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

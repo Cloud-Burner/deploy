@@ -1,0 +1,16 @@
+[Unit]
+Description=RabbitMQ via docker-compose
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+User=adm
+WorkingDirectory=/home/adm/srv/deploy/rabb_test
+ExecStart=/usr/bin/docker-compose up --remove-orphans
+ExecStop=/usr/bin/docker-compose down
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,17 @@
+[Unit]
+Description=SSH tunnel to cloudburner server (8001, 9001)
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/ssh -N \
+  -o ServerAliveInterval=60 \
+  -o ExitOnForwardFailure=yes \
+  -R 8180:localhost:8001 \
+  -R 9000:localhost:9000 \
+  -R 9001:localhost:9001 \
+  root@cloudburner-miem.ru
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,16 @@
+[Unit]
+Description=Stream Exporter via Poetry
+After=network.target
+Requires=network.target
+
+[Service]
+Type=simple
+User=adm
+WorkingDirectory=/home/adm/srv/exporter/exporter
+ExecStart=/home/adm/.local/bin/poetry run python3 terminal_exporter.py
+
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
