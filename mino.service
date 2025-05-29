@@ -10,8 +10,8 @@ WorkingDirectory=/home/adm
 
 ExecStart=/usr/bin/docker run --rm \
   -p 9000:9000 -p 9001:9001 \
-  -e MINIO_ROOT_USER=minioadmin \
-  -e MINIO_ROOT_PASSWORD=minioadmin \
+  -e MINIO_ROOT_USER="pass" \
+  -e MINIO_ROOT_PASSWORD="pass" \
   -v /home/adm/data:/data \
   -v /home/adm/config:/root/.minio \
   quay.io/minio/minio server /data --console-address ":9001"

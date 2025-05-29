@@ -10,8 +10,8 @@ WorkingDirectory=/home/adm
 
 ExecStart=/usr/bin/docker run --rm \
   --name Burner_base \
-  -e POSTGRES_USER=admin \
-  -e POSTGRES_PASSWORD=admin \
+  -e POSTGRES_USER=pass \
+  -e POSTGRES_PASSWORD=pass \
   -e POSTGRES_DB=burner \
   -v /home/adm/pgdata:/var/lib/postgresql/data \
   -p 5432:5432 \
